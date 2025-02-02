@@ -1,50 +1,28 @@
-# streamlit_app.py
+from flask import Flask, render_template, request
+import pickle
 
-import streamlit as st
-import joblib
-import numpy as np
-import os
+app = Flask(__name__)
 
-# Check if the model file exists
-model_path = "diabetes_model.pkl"
+#========================loading the save files==================================================
+model = pickle.load(open('logistic_regression.pkl','rb'))
+feature_extraction = pickle.load(open('feature_extraction.pkl','rb'))
 
-# Check the current working directory and print it for debugging
-st.write("Current working directory:", os.getcwd())
 
-# Load the trained model if the file exists
-if os.path.exists(model_path):
-    model = joblib.load(model_path)
-else:
-    st.error(f"Model file '{model_path}' not found. Please ensure it is in the correct directory.")
-    st.stop()
-
-# Function to make predictions
-def make_prediction(input_data):
-    prediction = model.predict(input_data)
+def predict_mail(input_text):
+    input_user_mail  = [input_text]
+    input_data_features = feature_extraction.transform(input_user_mail)
+    prediction = model.predict(input_data_features)
     return prediction
 
-# Streamlit UI components
-st.title('Diabetes Prediction App')
 
-# Input fields
-st.write("Please enter the following details:")
+@app.route('/', methods=['GET', 'POST'])
+def analyze_mail():
+    if request.method == 'POST':
+        mail = request.form.get('mail')
+        predicted_mail = predict_mail(input_text=mail)
+        return render_template('index.html', classify=predicted_mail)
 
-# Create input fields for user data
-age = st.number_input("Age", min_value=18, max_value=100, value=30)
-bmi = st.number_input("BMI", min_value=10.0, max_value=50.0, value=25.0)
-glucose = st.number_input("Glucose Level", min_value=0, max_value=300, value=120)
-insulin = st.number_input("Insulin Level", min_value=0, max_value=500, value=85)
-blood_pressure = st.number_input("Blood Pressure", min_value=0, max_value=200, value=80)
+    return render_template('index.html')
 
-# Create the input_data array
-input_data = np.array([[age, bmi, glucose, insulin, blood_pressure]])
-
-# Make prediction when button is clicked
-if st.button("Predict"):
-    prediction = make_prediction(input_data)
-    
-    # Display result
-    if prediction == 1:
-        st.write("The model predicts: **Diabetic**")
-    else:
-        st.write("The model predicts: **Not Diabetic**")
+if __name__ == '__main__':
+    app.run(debug=True)
