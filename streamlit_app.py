@@ -3,10 +3,20 @@
 import streamlit as st
 import joblib
 import numpy as np
-import pandas as pd
+import os
 
-# Load the trained model
-model = joblib.load("diabetes_model.pkl")
+# Check if the model file exists
+model_path = "diabetes_model.pkl"
+
+# Check the current working directory and print it for debugging
+st.write("Current working directory:", os.getcwd())
+
+# Load the trained model if the file exists
+if os.path.exists(model_path):
+    model = joblib.load(model_path)
+else:
+    st.error(f"Model file '{model_path}' not found. Please ensure it is in the correct directory.")
+    st.stop()
 
 # Function to make predictions
 def make_prediction(input_data):
