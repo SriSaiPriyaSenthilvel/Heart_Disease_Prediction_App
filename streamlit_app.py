@@ -33,7 +33,6 @@ st.set_page_config(page_title="Heart Disease Prediction", page_icon="❤️", la
 st.markdown(
     """
     <style>
-    
     body {
         background-color: #e6f7e6;
         color: #2d6a4f;
@@ -79,23 +78,23 @@ with col1:
     st.title("Heart Disease Prediction App")
     st.subheader("Enter your health details below:")
 
-    # User Inputs
-    age = st.number_input("Age", min_value=20, max_value=100, value=40)
+    # User Inputs (no default values)
+    age = st.number_input("Age", min_value=20, max_value=100)
     sex = st.radio("Sex", ["Male", "Female"])
     sex = 1 if sex == "Male" else 0
-    cp = st.slider("Chest Pain Type (0-3)", 0, 3, 1)
-    trestbps = st.number_input("Resting Blood Pressure", min_value=80, max_value=200, value=120)
-    chol = st.number_input("Cholesterol", min_value=100, max_value=600, value=200)
+    cp = st.slider("Chest Pain Type (0-3)", 0, 3)
+    trestbps = st.number_input("Resting Blood Pressure", min_value=80, max_value=200)
+    chol = st.number_input("Cholesterol", min_value=100, max_value=600)
     fbs = st.radio("Fasting Blood Sugar > 120 mg/dl", ["Yes", "No"])
     fbs = 1 if fbs == "Yes" else 0
-    restecg = st.slider("Resting ECG Results (0-2)", 0, 2, 1)
-    thalach = st.number_input("Max Heart Rate Achieved", min_value=60, max_value=220, value=150)
+    restecg = st.slider("Resting ECG Results (0-2)", 0, 2)
+    thalach = st.number_input("Max Heart Rate Achieved", min_value=60, max_value=220)
     exang = st.radio("Exercise Induced Angina", ["Yes", "No"])
     exang = 1 if exang == "Yes" else 0
-    oldpeak = st.number_input("ST Depression Induced by Exercise", min_value=0.0, max_value=6.0, value=1.0, step=0.1)
-    slope = st.slider("Slope of Peak Exercise ST Segment (0-2)", 0, 2, 1)
-    ca = st.slider("Number of Major Vessels (0-4)", 0, 4, 0)
-    thall = st.slider("Thalassemia (0-3) [Higher is Riskier]", 0, 3, 1)
+    oldpeak = st.number_input("ST Depression Induced by Exercise", min_value=0.0, max_value=6.0, step=0.1)
+    slope = st.slider("Slope of Peak Exercise ST Segment (0-2)", 0, 2)
+    ca = st.slider("Number of Major Vessels (0-4)", 0, 4)
+    thall = st.slider("Thalassemia (0-3) [Higher is Riskier]", 0, 3)
 
     # Correct Misinterpretation by Inverting Thalassemia Score
     thall = 3 - thall
@@ -143,4 +142,3 @@ with col1:
 
 with col2:
     st.image("hrt.jpg", use_container_width=True)
-
