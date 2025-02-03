@@ -4,25 +4,25 @@ This is an interactive machine learning application designed to predict the like
 The project integrates concepts from machine learning, data science, and web development to provide an effective and user-friendly tool for heart disease prediction.
 
 ## Features
-## Real-Time Predictions:
+### Real-Time Predictions:
 The app predicts the likelihood of heart disease based on medical input data, allowing users to get quick results.
-## User-Friendly Interface: 
+### User-Friendly Interface: 
 Built with Streamlit, the app has a simple and intuitive design, making it easy for users to interact with.
-## Machine Learning Model:
+### Machine Learning Model:
 The prediction model is trained on relevant medical datasets to ensure accuracy and reliability.
-## Input Parameters:
+### Input Parameters:
 Users can input key medical data such as age, blood pressure, cholesterol levels, etc., for heart disease prediction.
 
 ## Tools & Technologies
-## Python:
+### Python:
 Core language used for data processing and machine learning.
-## Streamlit:
+### Streamlit:
 A framework for building the interactive web application interface.
-## Scikit-Learn: 
+### Scikit-Learn: 
 Library used for implementing machine learning algorithms.
-## Pandas:
+### Pandas:
 For data manipulation and analysis.
-## NumPy:
+### NumPy:
 For numerical operations.
 
 ## Usage
