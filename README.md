@@ -32,3 +32,6 @@ The result will be displayed on the screen in real-time.
 
 ## Model Details
 The machine learning model used for predictions is trained on a dataset that includes various medical parameters like age, cholesterol levels, and blood pressure. The model predicts whether a person is at risk of heart disease based on these parameters.
+
+## Link
+https://machinelearningproject-1.streamlit.app/
